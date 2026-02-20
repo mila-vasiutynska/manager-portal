@@ -1,4 +1,3 @@
-UPDATE leave_balances
-SET sick_hours =30,
-		annual_hours = 80
-WHERE emp_id = 101;
+UPDATE employees
+SET last_name = 'Bowman'
+WHERE emp_id = 103;
