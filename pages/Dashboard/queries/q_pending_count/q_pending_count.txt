@@ -1,0 +1,3 @@
+SELECT COUNT(*)::int AS pending_count
+FROM leave_requests
+WHERE status = 'PENDING';

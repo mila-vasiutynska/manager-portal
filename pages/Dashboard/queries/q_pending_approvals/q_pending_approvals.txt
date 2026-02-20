@@ -1,0 +1,13 @@
+SELECT
+  request_id,
+  l.emp_id,
+	e.first_name ||  ' ' || e.last_name AS full_name,
+  start_date,
+  end_date,
+  leave_type,
+  total_hours,
+  created_at::date AS created_date
+FROM leave_requests l
+Join employees e ON l.emp_id = e.emp_id
+WHERE status = 'PENDING'
+ORDER BY created_at ASC;

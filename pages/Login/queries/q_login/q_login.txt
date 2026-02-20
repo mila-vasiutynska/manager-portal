@@ -1,0 +1,9 @@
+SELECT 
+  emp_id,
+  first_name,
+  last_name,
+  role
+FROM employees
+WHERE username = {{inp_username.text}}
+  AND pin =  {{inp_pin.text}}
+LIMIT 1;

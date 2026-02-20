@@ -1,0 +1,11 @@
+{
+  "gitSyncId": "6996e116302bdb353697be72_97a48f3b-1f75-4ec6-96ac-52663408190c",
+  "id": "Dashboard_JSProtection",
+  "unpublishedCollection": {
+    "name": "JSProtection",
+    "pageId": "Dashboard",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": []
+  }
+}

@@ -1,0 +1,4 @@
+UPDATE leave_balances
+SET sick_hours =30,
+		annual_hours = 80
+WHERE emp_id = 101;

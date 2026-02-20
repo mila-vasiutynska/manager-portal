@@ -1,0 +1,7 @@
+UPDATE leave_requests
+SET status = 'CANCELED',
+		updated_by = {{appsmith.store.full_name}},
+    updated_at = now()
+WHERE request_id = {{this.params.request_id}}
+  AND status = 'PENDING'
+RETURNING request_id;

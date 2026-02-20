@@ -1,0 +1,10 @@
+INSERT INTO leave_balances (
+  emp_id,
+	annual_hours,
+	sick_hours
+)
+VALUES (
+  101,
+	80,
+	50
+);

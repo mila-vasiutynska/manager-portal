@@ -1,0 +1,30 @@
+WITH req AS (
+	SELECT request_id, emp_id, leave_type, total_hours
+	FROM leave_requests
+	WHERE request_id = {{ this.params.request_id }}::bigint
+	AND status = 'PENDING'
+),
+upd AS (
+	UPDATE leave_requests
+	SET 
+	status = 'APPROVED',
+	approved_by = {{appsmith.store.full_name}},
+	approved_at = now()
+	WHERE request_id = (SELECT request_id FROM req)
+	RETURNING request_id, emp_id, leave_type, total_hours
+),
+bal AS (
+	UPDATE leave_balances b
+	SET
+	annual_hours = CASE
+	WHEN (SELECT leave_type FROM upd) = 'ANNUAL' THEN b.annual_hours - (SELECT total_hours FROM upd)
+	ELSE b.annual_hours
+	END,
+	sick_hours = CASE
+	WHEN (SELECT leave_type FROM upd) = 'SICK' THEN b.sick_hours - (SELECT total_hours FROM upd)
+	ELSE b.sick_hours
+	END
+	WHERE b.emp_id = (SELECT emp_id FROM upd)
+	RETURNING b.emp_id
+)
+SELECT request_id FROM upd;
